@@ -6,18 +6,58 @@
   <style>
     canvas {
       border: 2px solid black;
+      display: block;
+      margin: auto;
     }
   </style>
 </head>
 <body>
-  <canvas id="tabuleiro" width="400" height="400"></canvas>
+  <canvas id="tabuleiro" width="420" height="420"></canvas>
 
   <script>
     const canvas = document.getElementById("tabuleiro");
     const ctx = canvas.getContext("2d");
 
-    const tamanho = 50; // Tamanho de cada casa (8x8, então 50x50px cada)
+    const tamanho = 50; // Tamanho de cada casa
+    const letras = ['A','B','C','D','E','F','G','H'];
+
+    ctx.font = "16px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
 
     for (let linha = 0; linha < 8; linha++) {
       for (let coluna = 0; coluna < 8; coluna++) {
-        // Alterna entre preto e branco
+        const x = coluna * tamanho;
+        const y = linha * tamanho;
+
+        // Cor da casa
+        ctx.fillStyle = (linha + coluna) % 2 === 0 ? "#ffffff" : "#000000";
+        ctx.fillRect(x, y, tamanho, tamanho);
+
+        // Borda
+        ctx.strokeStyle = "#000000";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(x, y, tamanho, tamanho);
+      }
+    }
+
+    // Letras nas colunas (A-H)
+    for (let i = 0; i < 8; i++) {
+      const letra = letras[i];
+      const x = i * tamanho + tamanho / 2;
+      const y = 8 * tamanho + 10; // Abaixo do tabuleiro
+      ctx.fillStyle = "black";
+      ctx.fillText(letra, x, y);
+    }
+
+    // Números nas linhas (1-8)
+    for (let i = 0; i < 8; i++) {
+      const numero = 8 - i; // Começa do topo com 8
+      const x = 8 * tamanho + 10; // À direita do tabuleiro
+      const y = i * tamanho + tamanho / 2;
+      ctx.fillStyle = "black";
+      ctx.fillText(numero.toString(), x, y);
+    }
+  </script>
+</body>
+</html>

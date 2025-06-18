@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabuleiro de Xadrez</title>
+  <style>
+    canvas {
+      border: 2px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="tabuleiro" width="400" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById("tabuleiro");
+    const ctx = canvas.getContext("2d");
+
+    const tamanho = 50; // Tamanho de cada casa (8x8, então 50x50px cada)
+
+    for (let linha = 0; linha < 8; linha++) {
+      for (let coluna = 0; coluna < 8; coluna++) {
+        // Alterna entre preto e branco
